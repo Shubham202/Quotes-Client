@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Quote from "./pages/quote";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import axios from "axios";
+
+const API_URL = "https://quotes-mern-website.herokuapp.com/";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [quotes, setQuotes] = useState([]);
+
+    const user = localStorage.getItem('token');
+    
+    useEffect(() => {
+        const get = async () => {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            setQuotes(data);
+        };
+        get();
+    }, []);
+    
+    return (
+        <>
+            <Router>
+                <div>
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" exact element={<Quote props={quotes} />} />
+                        {user && <Route path="/dashboard" exact element={<Dashboard props={quotes} />} />}
+                        <Route path="/dashboard" exact element={<Navigate to='/login' />} />
+                        <Route path="/login" exact element={<Login />} />
+                        <Route path="/Register" exact element={<Register />} />
+                    </Routes>
+                </div>
+            </Router>
+        </>
+    );
 }
 
 export default App;
