@@ -19,7 +19,7 @@ code {
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 7.5rem;
+  padding: 1.5rem 8%;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
   font-size: 1.15rem;
 }
@@ -72,6 +72,7 @@ a{
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
+  margin: auto;
 }
 
 .title {
@@ -156,4 +157,34 @@ textarea {
 .error {
   color: red;
   margin: 1rem 0rem -2rem 0rem;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  * {
+    font-size: 1rem;
+  }
+
+  .welcome {
+    font-size: 2rem;
+  }
+
+  .card {
+    width: 75%;
+  }
+
+  .elem {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  * {
+    font-size: 0.9rem;
+  }
 }
