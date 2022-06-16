@@ -1,36 +1,34 @@
-import axios from 'axios';
-import { useState } from 'react';
-import Card from '../components/Card';
+import axios from "axios";
+import { useState } from "react";
+import Card from "../components/Card";
 
-const Dashboard = (quotes) => {
-
+const Dashboard = quotes => {
     const user = localStorage.getItem("author");
 
-    const url = "https://quotes-mern-website.herokuapp.com";
+    const url = "https://quotes-mern-website.herokuapp.com/";
     const [data, setData] = useState({
         content: "",
         author: user
-    })
+    });
 
     let handle = e => {
-        const newData={...data};
+        const newData = { ...data };
         newData[e.target.id] = e.target.value;
         setData(newData);
-    }
+    };
 
     let submit = e => {
         e.preventDefault();
-        axios.post(url,{
+        axios.post(url, {
             content: data.content,
             author: user
         });
         window.location.reload();
-    }
+    };
 
-    let selectedQuote = []
+    let selectedQuote = [];
     quotes.props.forEach(e => {
-        if (e.author === user)
-            selectedQuote.push(e);
+        if (e.author === user) selectedQuote.push(e);
     });
 
     return (
@@ -58,6 +56,6 @@ const Dashboard = (quotes) => {
             </div>
         </div>
     );
-}
- 
+};
+
 export default Dashboard;
