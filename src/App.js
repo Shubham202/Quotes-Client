@@ -5,7 +5,6 @@ import Quote from "./pages/quote";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import axios from "axios";
 
 const API_URL = "https://quotes-mern-website.herokuapp.com/";
 
