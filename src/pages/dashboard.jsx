@@ -6,7 +6,7 @@ const Dashboard = (quotes) => {
 
     const user = localStorage.getItem("author");
 
-    const url = "https://quotes-mern-website.herokuapp.com/";
+    const url = "https://quotes-mern-website.herokuapp.com";
     const [data, setData] = useState({
         content: "",
         author: user
